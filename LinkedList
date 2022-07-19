@@ -1,0 +1,96 @@
+class LinkedList{
+    Node head = null;
+
+    static class Node {
+    int value;
+    Node next;
+
+    Node(int num){
+        this.value = num;
+        next = null;
+    }
+}   
+    public void show(){
+        int nodeIndex = 0;
+
+        Node nNode = head;
+
+        while (nNode != null){
+            System.out.println("node index : " + nodeIndex + 
+            ", value : " + head.value);
+            nNode = nNode.next;
+            nodeIndex++;
+        }
+
+    }
+
+    public void addHead(int val){
+        Node newHead = new Node(val);
+        newHead.next = head;
+        head = newHead;
+        return;
+    }
+
+    public void addTail(int val){
+        Node newTail = new Node(val);
+
+        Node last = head;
+        while (last.next != null){
+            last = last.next;
+        }
+        last.next = newTail;
+        return;
+    }
+
+    public void deleteAt(int index){
+        Node pointer = head;
+        
+        if (index == 0){
+            head = pointer.next;
+            return;
+        }
+
+        for(int i = 1; i<index;i++){
+            pointer = pointer.next;
+        }
+
+        if (pointer.next == null){
+            pointer.next = null;
+        }
+        pointer.next = pointer.next.next;
+        return;
+    }
+
+    public void length(){
+        int nodeIndex = 0;
+
+        while (head != null){
+            head = head.next;
+            nodeIndex++;
+        }
+
+        System.out.println(nodeIndex);
+        return;
+        
+    }
+
+    public static void main(String[] args) {
+        var linkList = new LinkedList();
+
+        linkList.head = new Node(1);
+        Node second = new Node(2);
+        Node third = new Node(3);
+        Node fourth = new Node(4);
+
+        linkList.head.next = second;
+
+        linkList.addHead(5);
+        linkList.addTail(10);
+
+        linkList.deleteAt(3);
+
+        linkList.show();
+
+        linkList.length(); 
+    }
+}
